@@ -57,7 +57,7 @@ export default function Jobs() {
               </p>
 
               <p className="text-gray-600 mb-3">
-                <span className="font-semibold text-gray-800">Location:</span> {job.tech}
+                <span className="font-semibold text-gray-800">Required Technologies:</span> {job.tech}
               </p>
 
               <p className="text-gray-500 mb-6 line-clamp-3">{job.desci}</p>

@@ -10,7 +10,7 @@ export default function Hire() {
     console.log("Data being SENT (formValue):", formValue);
 
     try {
-      const response = await fetch("http://localhost:8082/api/employee", {
+      const response = await fetch("http://localhost:8082/employee", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export default function Hire() {
 
       const receivedMessage = await response.text();
       console.log("Message RECEIVED from backend:", receivedMessage);
-      alert(`Backend Says: ${receivedMessage}`);
+      alert(`DataBase Result :  ${  receivedMessage}`);
       e.target.reset();
 
     } catch (error) {
