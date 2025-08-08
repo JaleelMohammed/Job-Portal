@@ -4,10 +4,12 @@ export default function Jobs() {
 
   const [jobs, setJobs] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [applied, setApplied] = useState(new Set());
+
 
   useEffect(() => {
     const Fetchjobs = async () => {
-      const response = await fetch("http://localhost:8082/findall")
+      const response = await fetch("http://localhost:8080/findall")
       const result = await response.json();
       setJobs(result);
       console.log(result);
@@ -15,6 +17,9 @@ export default function Jobs() {
     }
     Fetchjobs();
   }, [])
+  const handleApply = (id) => {
+    setApplied((prev) => ({ ...prev, [id]: true }));
+  };
 
   const SearchedJob = jobs.filter(jobs =>
     jobs.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -24,7 +29,7 @@ export default function Jobs() {
 
   return (
 
-    <div className=" bg-blue-100 py-10 min-h-screen px-4">
+    <div className=" bg-gradient-to-br from-[3A294F] via-[#8D88AA] to-[#F4D6FF] transition-all py-10 min-h-screen px-4">
 
       <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">
         Current Job Openings
@@ -40,9 +45,21 @@ export default function Jobs() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+{/* {SearchedJob.length>0? (
 
+):( 
 
+    <div className="text-center py-10">
+    <p className="text-lg">
+      No jobs found matching Your Search
+    </p>
+    
+    
 
+    </div>
+)*/}
+
+  
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {SearchedJob.map((job) => (
           <div
@@ -63,13 +80,19 @@ export default function Jobs() {
               <p className="text-gray-500 mb-6 line-clamp-3">{job.desci}</p>
             </div>
 
-            <a
-              href="#"
-              className="inline-block text-center bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded transition-colors duration-300 w-full"
+            <button
+              onClick={() => handleApply(job.id)}
+              className={`w-full py-2 rounded-3xl text-white font-semibold transition duration-200 ${applied[job.id]
+                  ? "bg-gray-700 cursor-not-allowed "
+                  : "bg-indigo-600 hover:bg-indigo-700 "
+                }`}
+              disabled={applied[job.id]}
             >
-              Apply Now
-            </a>
+              {applied[job.id] ? "Applied" : "Apply Now"}
+            </button>
+
           </div>
+        
 
         ))}
       </div>

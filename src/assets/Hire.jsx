@@ -10,7 +10,7 @@ export default function Hire() {
     console.log("Data being SENT (formValue):", formValue);
 
     try {
-      const response = await fetch("http://localhost:8082/employee", {
+      const response = await fetch("http://localhost:8080/employees", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export default function Hire() {
 
   return (
 
-    <div className="min-h-screen bg-blue-200 flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center  bg-gradient-to-br from-[3A294F] via-[#8D88AA] to-[#F4D6FF] transition-all p-4">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-screen-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Hire Employees</h2>
 
@@ -52,7 +52,8 @@ export default function Hire() {
               placeholder="Enter ID"
               name="id"
               className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
+              required
+           />
           </div>
 
           <div>
@@ -62,7 +63,8 @@ export default function Hire() {
               placeholder="Enter title"
               name="title"
               className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
+              required
+           />
           </div>
 
           <div>
@@ -72,6 +74,7 @@ export default function Hire() {
               placeholder="Enter experience"
               name="experience"
               className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
             />
           </div>
 
@@ -82,7 +85,8 @@ export default function Hire() {
               placeholder="Enter tech stack"
               name='tech'
               className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
+              required
+           />
           </div>
 
           <div className="md:col-span-2">
